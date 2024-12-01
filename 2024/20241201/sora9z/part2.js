@@ -20,27 +20,18 @@ const fs = require("fs");
 const input = fs.readFileSync("./input.txt", "utf-8").split("\n");
 // const input = fs.readFileSync("./test.txt", "utf-8").split("\n");
 
-// 정렬
-const leftArray = [];
-const rightArray = [];
-
-input.forEach((el) => {
-  const [_left, _right] = el.split("   ");
-  leftArray.push(Number(_left.trim()));
-  rightArray.push(Number(_right.trim()));
-});
-
-leftArray.sort((a, b) => a - b);
-rightArray.sort((a, b) => a - b);
-
 // Count 맵으로  변환
 const leftMap = new Map();
 const rightMap = new Map();
 
-for (let i = 0; i < leftArray.length; i++) {
-  leftMap.set(leftArray[i], (leftMap.get(leftArray[i]) || 0) + 1);
-  rightMap.set(rightArray[i], (rightMap.get(rightArray[i]) || 0) + 1);
-}
+input.forEach((el) => {
+  const [_left, _right] = el.split("   ");
+  const left = Number(_left.trim());
+  const right = Number(_right.trim());
+
+  leftMap.set(left, (leftMap.get(left) || 0) + 1);
+  rightMap.set(right, (rightMap.get(right) || 0) + 1);
+});
 
 // result 반환
 let sum = 0;
