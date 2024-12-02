@@ -29,7 +29,7 @@ def _is_valid_reposrt(report, is_removed=False):
             return False
         # i번째 요소를 제거하고 다시 확인
         for i in range(len(report)):
-            if is_valid_reposrt(report[:i] + report[i + 1:], True):
+            if _is_valid_reposrt(report[:i] + report[i + 1:], True):
                 return True
         return False
 
@@ -39,7 +39,7 @@ def _is_valid_reposrt(report, is_removed=False):
                 return False
             # i번째 요소를 제거하고 다시 확인
             for i in range(len(report)):
-                if is_valid_reposrt(report[:i] + report[i + 1:], True):
+                if _is_valid_reposrt(report[:i] + report[i + 1:], True):
                     return True
             return False
 
@@ -50,4 +50,4 @@ for report in array:
     if _is_valid_reposrt(report):
         result.append(report)
 
-print(len(result))
+print(len(result))  # 318
