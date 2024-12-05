@@ -26,8 +26,8 @@ https://adventofcode.com/2024/day/4
  * 각 행렬들을 변환하여 가로방향으로 탐색 가능하도록 만든다
 """
 
-input = open("./test.txt").read().split("\n")
-# input = open("./input.txt").read().split("\n")
+# input = open("./test.txt").read().split("\n")
+input = open("./input.txt").read().split("\n")
 
 
 def get_all_diagonals(matrix):
@@ -45,10 +45,12 @@ def get_all_diagonals(matrix):
 def count_matching_words(array):
     count = 0
     for word in array:
-        if re.search(r'xmas', word, re.IGNORECASE):
-            count += 1
-        if re.search(r'samx', word, re.IGNORECASE):
-            count += 1
+        matches = re.findall(r'xmas', word, re.IGNORECASE)
+        if matches:
+            count += len(matches)
+        matches = re.findall(r'samx', word, re.IGNORECASE)
+        if matches:
+            count += len(matches)
     return count
 
 
@@ -63,7 +65,6 @@ count += count_matching_words(vertical_arr)
 diagonals = get_all_diagonals(matrix)
 count += count_matching_words(diagonals)
 # # 4. 오-왼 대각선방향 + 대각선 역방향 순회
-matrix = np.fliplr(matrix)
-diagonals = get_all_diagonals(matrix)
-count += count_matching_words(diagonals)
+flipped_diagonals = get_all_diagonals(np.fliplr(matrix))
+count += count_matching_words(flipped_diagonals)
 print(count)
